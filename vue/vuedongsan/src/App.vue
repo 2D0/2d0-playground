@@ -1,5 +1,24 @@
 <template>
 
+<!-- 
+vue 새로운 프로젝트 생성 방법=========================
+
+npm으로 @vue/cli 설치한 덕분에 vue create만으로 새로운 프로젝트가 생성 가능하다.
+
+vs코드에서 프로젝트를 생성할  폴더를 연 다음 
+터미널을 켜서 "vue create 프로젝트명" 을 입력 후 엔터친다.
+vue 버젼을 선택하라고 나오면 방향키를 사용해 vue3을 선택 후 엔터친다.
+ex) Default (Vue 3 Prview) ([Vue 3] babel, eslint) <- 선택
+
+프로젝트 생성이 완료 된 후 폴더를 확인해보면 새로운 프로젝트 폴더가 만들어져 있을 거다.
+vs코드로 새로운 프로젝트 폴더를 오픈 한 다음 터미널을 켜서 npm run serve를 입력하면
+실시간 웹서버를 열 수 있다. (주소 뜨면 Ctrl + 클릭 누르면 됨)
+
+코딩은 src 폴더 속 App.vue에 들어가서 하면 된다. (메인페이지라고 보면 됨)
+이미지 파일들은 보통 assets폴더에 넣는다.
+-->
+
+<!-- 터미널 창 열어서 npm run serve 치면 실시간 웹 나옴  -->
 <!-- 모달창만들기 -->
 <div class="black_bg" v-if="modalOpen == true">
   <div class="white_bg">
@@ -75,15 +94,6 @@ v-if="modalOpen == true"
     <button @click="allCount()">허위매물신고</button> 
     <span>신고수 : {{policeCount[0]}}</span> 
 
-    <img src="./assets/room0.jpg" class="room_img">
-    <h4>{{ pdName[0] }}</h4> 
-    <p>{{ price1 }} 만원</p>
-    <button>허위매물신고</button>
-
-    <!-- <img src="./assets/room0.jpg" class="room_img">
-    <h4>{{ pdName[0] }}</h4> 
-    <p>{{ price1 }} 만원</p>
-    <button>허위매물신고</button> -->
     <!-- 
       버튼 태그를 만들어 버튼을 누르면 신고수가 올라가게 이벤트 넣기
       자바 스크립트 같은 경우 onClick=""를 쓰지만 Vue 문법 같은 경우 
@@ -106,38 +116,48 @@ v-if="modalOpen == true"
 
   </div>
 
+
+
+  <!-- 리스트에 있는 데이터를 상품에 넣기 -->
   <div>
-    <img src="./assets/room1.jpg" class="room_img">
-    <h4 @click="modalOpen = true">{{ pdName[1] }}</h4>
-    <p>{{ price2 }} 만원</p>
-    <button @click="allCount1()">허위매물신고</button> 
-    <span>신고수 : {{policeCount[1]}}</span>
+    <img :src="allData[0].image" class="room_img">
+    <h4>{{ allData[0].title }}</h4> 
+    <p>{{ allData[0].price }}원</p>
   </div>
-  <!-- 꼭 클릭  -->
-  <div>
-    <img src="./assets/room2.jpg" class="room_img">
-    <h4 @click="modalOpen = true">{{ pdName[2] }}</h4>
-    <p>{{ price2 }} 만원</p>
-    <button @click="allCount2()">허위매물신고</button> 
-    <span>신고수 : {{policeCount[2]}}</span>
-  </div> 
   <!-- 
-    위의 하드코딩을 Vue로 축약 하면 아래의 코드로 만들 수 있음
-    <div v-for="products in pdName" :key="products">
-      <h4>{{ products }}</h4>
-      <p>{{ price }}만원</p>
-    </div>
-    =====================
-    <div v-for="(products, idx) in pdName" :key="idx">
-    위 처럼 v-for 값을 2개로 만들어 idx 값을 넣고 []안에 idx를 넣어도 순서대로 출력 됨 -> 
-    <h4>{{ pdName[idx] }}</h4> 
+    스테이트에 넣은 allData를 {{}} 안에 넣으면 데이터가 입력이된다.
+    그 중 1번째 데이터만 불러오고 싶으면 [] <- 안에 원하는 순서를 번호를 넣는다.
+    그 순서 중에서 또 원하는 값만 불러오고 싶으면 그 값의 이름을 . 뒤에 붙여 넣는다.(마치 제이쿼리처럼)
+    ex) allData[0].image
+    이렇게 리스트에 있는 원하는 데이터를 불러올 수 있다.
   -->
- 
+
+  <!-- 반복문 사용해서 리스트에 있는 데이터를 상품에 넣기 -->
+  <div v-for="pd in allData" :key="pd">
+    <img :src="pd.image" class="room_img">
+    <h4>{{ pd.title }}</h4> 
+    <p>{{ pd.price }}원</p>
+  </div>
+
+<!-- 
+  위와 같은 방법을 응용하여 v-for을 사용해 반복문을 만들어보자
+  v-for안에 작명을 집어 넣고 그 작명한 값에 원하는 데이터 함수를 이어 붙인다.
+  ex) pd.image
+  이렇게 하면 반복 되면서 원하는 정보가 입력이 된다.
+-->
+
+
 </template>
 
 <script>
 
 import data from './assets/data.js';
+console.log(data);
+/* 
+  임폴트 한 뒤에 아래 스테이트(state) -> ex) data(){ return {} } 안에 내가 import한 함수를 입력해준다.
+  나 같은 경우 allData 라는 이름에 data를 넣었다 -> ex) allData : data
+*/
+
 
 export default {
   name: 'App',
@@ -158,7 +178,7 @@ export default {
       
       modalOpen : false,
 
-      allData : data
+      allData : data,
     }
   },
   methods : {
