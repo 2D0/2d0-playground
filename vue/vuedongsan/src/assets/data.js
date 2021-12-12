@@ -1,10 +1,10 @@
 
 /* 원룸데이트 */
 
-var apple = 10;
+/* var apple = 10;
 var apple2 = 100;
 
-export {apple, apple2};
+export {apple, apple2}; */
 
 
 // import / export 문법 쓰는 법
@@ -31,12 +31,10 @@ data(){
   data : apple
 }
 
-
-
-
 */
 
-var data = [{
+let data = [
+  {
   id : 0,
   title: "Sinrim station 30 meters away",
   image: "https://codingapple1.github.io/vue/room0.jpg",
@@ -77,7 +75,8 @@ var data = [{
   image: "https://codingapple1.github.io/vue/room5.jpg",
   content: "반지하 원룸입니다. 비올 때 물가끔 새는거 빼면 좋아요",
   price: 370000
-}];
+  }
+];
 
 export default data;
 
