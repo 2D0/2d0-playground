@@ -1,15 +1,24 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+  <div v-for="(test, idx) in menu" :key="idx">
+    {{test}}
+  </div>
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+
 
 export default {
   name: 'App',
+
+  data(){
+    return{
+      menu : ['a','b','c'],
+    }
+  },
   components: {
-    HelloWorld
   }
 }
 </script>
