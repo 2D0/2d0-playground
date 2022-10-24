@@ -4,10 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>다블리셔 코딩 놀이터</title>
+
+    <!-- 제이쿼리 cdn -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- 슬릭슬라이더 cdn -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <script type="text/javascript" src="https:/cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
     <script defer src="javascript/operator.js"></script>
+    <script defer src="main.js"></script>
 </head>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    .slider .slider_ul{
+        margin-top:100px;
+        position:relative;
+    }
+    .slider .slider_ul li{
+        position:relative;
+        width:100%;
+        height:100%;
+    }
+    .slider .slider_ul li:after{
+        content:'';
+        display:block;
+        padding-bottom:30%;
+    }
+    .slider .slider_ul li div{
+        position:absolute;
+        width:100%;
+        height:100%;
+    }
+    .slider .slider_ul li div img{
+        display:block;
+        width:100%;
+        height:100%;
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%, -50%);
+        object-fit:contain;
+    }
+    .slider button.slick-arrow{
+        width:50px;
+        height:50px;
+        border:none;
+        position:absolute;
+        top:50%;
+        background:none;
+        text-indent:-9999px;
+    }
+    .slider button.slick-prev{
+        border-top:2px solid #000;
+        border-left:2px solid #000;
+        transform:translateY(-50%) rotate(-45deg);
+        left:100px;
+    } 
+    .slider button.slick-next{
+        border-top:2px solid #000;
+        border-left:2px solid #000;
+        transform:translateY(-50%) rotate(135deg);
+        right:100px;
+    }
+    
+    .slider .slick-dots{
+        width: 100px;
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+        border: none;
+        text-indent: -9999px;
+        background: none;
+        position: absolute;
+        left: 50%;
+        bottom: 23px;
+        transform: translateX(-50%);
+    }
+    .slider .slick-dots li{
+        width: 20px;
+        height: 20px;
+        background: #fff;
+        border-radius: 50%;
+        opacity: 0.8;
+    }
+    .slider .slick-dots li.slick-active{
+        background: #333;
+    }
+</style>
+
+
 <body>
-            <h1>다블리셔 코딩 놀이터</h1>
-            <h2>콘솔 창을 확인 하세요.</h2>
+    <h1>다블리셔 코딩 놀이터</h1>
+    <h2>콘솔 창을 확인 하세요.</h2>
+
+
+    <div class="slider">
+        <ul class="slider_ul">
+            <li><div><img src="img/main1.png" alt="메인1"></div></li>
+            <li><div><img src="img/main2.png" alt="메인2"></div></li>
+            <li><div><img src="img/main3.png" alt="메인3"></div></li>
+            <li><div><img src="img/main4.png" alt="메인4"></div></li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+
+    </script>
+    
+
 </body>
 </html>
